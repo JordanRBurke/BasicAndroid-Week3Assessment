@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Week3AssessmentKey</string>
+    <string name="name_class">Welcome, %1$s, the %2$s</string>
+    <string name="the_world_rests_in_your_hands">The world rests in your hands!</string>
 </resources>

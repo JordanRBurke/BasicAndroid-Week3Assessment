@@ -9,9 +9,11 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+
+import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,11 +27,36 @@ public class AccountFragment extends Fragment {
     @BindView(R.id.name_input)
     protected EditText nameInput;
 
+    private CallBack callBack;
+
     @BindView(R.id.class_input)
     protected EditText classInput;
 
+    @BindView(R.id.button_finish)
+    protected Button buttonFinish;
+
     @OnClick(R.id.button_finish)
     protected void onFinishButtonClicked(View view) {
+
+        String mage = "mage";
+        String warrior = "warrior";
+        String archer = "archer";
+        String nameInputFinal = nameInput.getText().toString().toLowerCase();
+        String classInputFinal = classInput.getText().toString().toLowerCase();
+
+        if (nameInput.getText().toString().isEmpty() || classInput.getText().toString().isEmpty()) {
+//          /* Didn't know if you wanted me to use my own code or not so I used the method given
+//             and added my own code in grey in the class error section below just in case :)
+//
+// */
+
+            showAlertDialog("Please fill in blanks");
+        } else if (mage != classInputFinal || archer != classInputFinal || warrior != classInputFinal) {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//            builder.setTitle("NO CLASS").setMessage("Class not recognized (Choose Warrior, Archer, or Mage");
+            showAlertDialog("Please input warrior, archer, or mage");
+        }
+
 
     }
 
@@ -72,4 +99,25 @@ public class AccountFragment extends Fragment {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+
+    public void attackParent(CallBack callBack) {
+        this.callBack = callBack;
+    }
+
+    public interface CallBack {
+
+        void createAccount(String accountName, String accountClass);
+    }
+
+    @OnClick(R.id.button_finish)
+    protected void buttonFinishPressed() {
+
+
+    }
+
+
+
+
+
+
 }
